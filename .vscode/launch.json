@@ -9,6 +9,26 @@
             "projectName": "discovery",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GatewayApplication<gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.sagar.gateway.GatewayApplication",
+            "projectName": "gateway",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MemberApplication<member>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.sagar.member.MemberApplication",
+            "projectName": "member",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sagar</groupId>
-	<artifactId>member</artifactId>
+	<artifactId>gym</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>member</name>
-	<description>Gym Register App </description>
+	<name>gym</name>
+	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -51,6 +51,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
