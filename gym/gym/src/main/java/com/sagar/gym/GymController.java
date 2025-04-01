@@ -19,9 +19,23 @@ public class GymController {
         service.saveGym(gym);
     }
 
+    @GetMapping("/test")
+	public String testok(){
+		return "OK";
+	}
+
     @GetMapping
     public ResponseEntity<List<Gym>> getAllGyms(){
         return ResponseEntity.ok(service.getAllGyms());
 
     }
+
+    @GetMapping("/{with-members/{gym-id}}")
+    public ResponseEntity<FullGymResponse> getAllGyms(
+        @PathVariable("gym-id") Integer gymId
+    ){
+        return ResponseEntity.ok(service.findGymsWithMembers(gymId));
+
+    }
+
 }

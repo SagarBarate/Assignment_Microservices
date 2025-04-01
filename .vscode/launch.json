@@ -29,6 +29,16 @@
             "projectName": "member",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GymApplication<gym>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.sagar.gym.GymApplication",
+            "projectName": "gym",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

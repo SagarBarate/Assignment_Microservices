@@ -17,4 +17,9 @@ public class GymService {
     public List<Gym> getAllGyms() {  // Renamed to match MemberController
         return repository.findAll();  // Correct return statement
     }
+
+    public FullGymResponse findGymsWithMembers(Integer gymId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

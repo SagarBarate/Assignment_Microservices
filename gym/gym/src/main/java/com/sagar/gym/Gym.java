@@ -1,5 +1,9 @@
 package com.sagar.gym;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
@@ -12,7 +16,9 @@ import lombok.*;
 @Builder
 public class Gym {
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;  // ID will be generated automatically
+
     private String name;
     private String email;
 }
