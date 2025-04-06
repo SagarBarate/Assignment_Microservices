@@ -30,7 +30,7 @@ public class GymController {
 
     }
 
-    @GetMapping("/{with-members/{gym-id}}")
+    @GetMapping("/with-members/{gym-id}")
     public ResponseEntity<FullGymResponse> getAllGyms(
         @PathVariable("gym-id") Integer gymId
     ){
