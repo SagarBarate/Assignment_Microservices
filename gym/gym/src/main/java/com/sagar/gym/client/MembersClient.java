@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface MembersClient{
 
     @GetMapping("/gym/{gym-id}")
-    List<Member> fundAllMemmbersByGym(
+    List<Member> findAllMembersByGym(
         @PathVariable("gym-id") Integer gymId
     );
 

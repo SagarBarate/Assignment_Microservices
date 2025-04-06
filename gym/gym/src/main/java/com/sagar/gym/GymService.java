@@ -10,27 +10,27 @@ import com.sagar.gym.client.MembersClient;
 public class GymService {
 
     private final GymRepositroy repository;
-    private MembersClient client;
+    private final MembersClient client;  // Mark as final for constructor injection
 
     public void saveGym(Gym gym) {
         repository.save(gym);
     }
 
-    public List<Gym> getAllGyms() {  // Renamed to match MemberController
-        return repository.findAll();  // Correct return statement
+    public List<Gym> getAllGyms() {
+        return repository.findAll();
     }
 
     public FullGymResponse findGymsWithMembers(Integer gymId) {
-        // TODO Auto-generated method stub
         var gym = repository.findById(gymId)
-        .orElse(
-            Gym.builder()
-            .name("NOT_FOUND")
-            .email("NOT_FOUND")
-            .build()
-        );
+            .orElse(
+                Gym.builder()
+                    .name("NOT_FOUND")
+                    .email("NOT_FOUND")
+                    .build()
+            );
 
-        var members = client.fundAllMemmbersByGym(gymId); //find all members from the member microservice;
+        // Call the client (ensure method name is consistent)
+        var members = client.findAllMembersByGym(gymId);
         return FullGymResponse.builder()
             .name(gym.getName())
             .email(gym.getEmail())
