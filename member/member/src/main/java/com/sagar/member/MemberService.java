@@ -1,6 +1,8 @@
 package com.sagar.member;
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.boot.json.JsonWriter.Members;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -17,4 +19,9 @@ public class MemberService {
     public List<Member> getAllMembers() {  // Renamed to match MemberController
         return repository.findAll();  // Correct return statement
     }
+
+    public List<Member> findAllMembersByGym(Integer gymId){
+        return repository.findAllByGymId(gymId);
+    }
+    
 }

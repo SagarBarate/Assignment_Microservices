@@ -25,4 +25,11 @@ public class MemberController {
         return ResponseEntity.ok(service.getAllMembers());
 
     }
+
+    @GetMapping("/gym/{gym-id}")
+    public ResponseEntity<List<Member>> findAllMembers(
+        @PathVariable("gym-id") Integer gymId
+    ){
+        return ResponseEntity.ok(service.findAllMembersByGym(gymId));
+    }
 }
