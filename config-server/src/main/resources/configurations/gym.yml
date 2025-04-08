@@ -1,6 +1,6 @@
 eureka:
     instance:
-        hostname: sagara00325597
+        hostname: localhost
     client:
         service-url:
             defaultZone: http://localhost:8761/eureka
@@ -12,7 +12,7 @@ spring:
     application:
         name: gym
     datasource:
-        url: jdbc:postgresql://localhost:5433/gym
+        url: jdbc:postgresql://localhost:5432/gym
         username: postgres
         password: your_password
         driver-class-name: org.postgresql.Driver
@@ -25,3 +25,34 @@ spring:
 application:
     config:
         members-url: http://localhost:8090/api/v1/members
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    tracing:
+        sampling:
+            probability: 1.0
+
+resilience4j:
+    circuitbreaker:
+        configs:
+            default:
+                slidingWindowSize: 10
+                failureRateThreshold: 50
+                minimumNumberOfCalls: 5
+                waitDurationInOpenState: 10s
+                permittedNumberOfCallsInHalfOpenState: 2
+                slidingWindowType: COUNT_BASED
+        instances:
+            gymService:
+                baseConfig: default
+    retry:
+        configs:
+            default:
+                maxAttempts: 3
+                waitDuration: 2s
+        instances:
+            gymService:
+                baseConfig: default

@@ -1,13 +1,11 @@
-eureka:
-  client:
-    register-with-eureka: true
-
 server:
   port: 8222
-
+  
 spring:
   application:
     name: gateway
+  config:
+    import: optional:configserver:http://localhost:8888
   logging:
     level:
       org.springframework.cloud.gateway: DEBUG
@@ -18,10 +16,20 @@ spring:
           enabled: true
       routes:
         - id: members
-          uri: lb://MEMBERS
+          uri: http://localhost:8090/api/v1/members
           predicates:
             - Path=/api/v1/members/**
         - id: gyms
-          uri: lb://GYM
+          uri: http://localhost:8070/api/v1/gyms
           predicates:
             - Path=/api/v1/gyms/**
+
+
+eureka:
+  client:
+    register-with-eureka: true
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

@@ -1,6 +1,62 @@
+# eureka:
+#     instance:
+#         hostname: localhost
+#     client:
+#         service-url:
+#             defaultZone: http://localhost:8761/eureka
+
+# server:
+#     port: 8090
+
+# spring:
+#     application:
+#         name: members
+#     datasource:
+#         url: jdbc:postgresql://db:5432/members
+#         username: postgres
+#         password: your_password
+#         driver-class-name: org.postgresql.Driver
+#     jpa:
+#         hibernate:
+#             ddl-auto: create
+#         database: postgresql
+#         database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+# management:
+#     endpoints:
+#         web:
+#             exposure:
+#                 include: "*"
+#     tracing:
+#         sampling:
+#             probability: 1.0
+
+# resilience4j:
+#     circuitbreaker:
+#         configs:
+#         default:
+#             slidingWindowSize: 5
+#             failureRateThreshold: 50
+#             waitDurationInOpenState: 5s
+#             permittedNumberOfCallsInHalfOpenState: 2
+#             slidingWindowType: COUNT_BASED
+#     instances:
+#         memberServiceCB:
+#             baseConfig: default
+
+# management:
+#     endpoints:
+#         web:
+#             exposure:
+#                 include: "*"
+#     health:
+#         circuitbreakers:
+#             enabled: true
+
+
 eureka:
     instance:
-        hostname: sagara00325597
+        hostname: localhost
     client:
         service-url:
             defaultZone: http://localhost:8761/eureka
@@ -11,17 +67,49 @@ server:
 spring:
     application:
         name: members
-    # config:
-    #     import: optional:configserver:http://localhost:8888
-
     datasource:
-        url: jdbc:postgresql://localhost:5432/members
-        username: postgres
-        password: your_password
-        driver-class-name: org.postgresql.Driver
+    # Use H2 in-memory database
+        url: jdbc:h2:mem:membersdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        driver-class-name: org.h2.Driver
+        username: sa
+        password: 
     jpa:
         hibernate:
             ddl-auto: create
-        database: postgresql
-        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        database: h2
+        database-platform: org.hibernate.dialect.H2Dialect
+    h2:
+    console:
+        enabled: true
+        path: /h2-console
 
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    tracing:
+        sampling:
+            probability: 1.0
+
+resilience4j:
+    circuitbreaker:
+        configs:
+            default:
+                slidingWindowSize: 5
+                failureRateThreshold: 50
+                waitDurationInOpenState: 5s
+                permittedNumberOfCallsInHalfOpenState: 2
+                slidingWindowType: COUNT_BASED
+        instances:
+            memberServiceCB:
+                baseConfig: default
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    health:
+        circuitbreakers:
+            enabled: true

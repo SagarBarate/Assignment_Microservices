@@ -29,6 +29,11 @@ public class GymController {
         return ResponseEntity.ok(service.getAllGyms());
 
     }
+//     @GetMapping
+//     public ResponseEntity<List<Gym>> getAllGyms(){
+//         List<Gym> dummyGyms = List.of(new Gym(1, "Test Gym", "Test Address"));
+//         return ResponseEntity.ok(dummyGyms);
+// }
 
     @GetMapping("/with-members/{gym-id}")
     public ResponseEntity<FullGymResponse> getAllGyms(
